@@ -57,15 +57,15 @@ class JoongnaCrawler(Crawler):
             self.driver.find_elements_by_class_name(keyword)[idx].click()
             time.sleep(TimeSleep)
             
-            title_elem = JoongnaCrawler.getData(self, '//*[@id="pdtMainData"]/article[2]/div[1]/div/div[2]/div[1]/span')
-            price_elem = JoongnaCrawler.getData(self, '//*[@id="pdtMainData"]/article[2]/div[1]/div/div[2]/p/em')
-            date_elem = JoongnaCrawler.getData(self, '//*[@id="pdtMainData"]/article[2]/div[1]/div/div[2]/div[2]/dl/dd[1]')
-            goodNum_elem = JoongnaCrawler.getData(self, '//*[@id="pdtMainData"]/article[2]/div[5]/ul/li[4]/span/p')
-            view_elem = JoongnaCrawler.getData(self, '//*[@id="pdtMainData"]/article[2]/div[1]/div/div[2]/div/dl/dd[2]')
-            text_elem = JoongnaCrawler.getData(self, 'description.mt20', False)
-            search_elem = JoongnaCrawler.getData(self, 'searchKw_list', False)
-            catg_elem = JoongnaCrawler.getData(self, 'category_list', False)
-            loc_elem = JoongnaCrawler.getData(self, '//*[@id="pdtMainData"]/article[3]/dl/dd[1]/ul/li/span')
+            title_elem = JoongnaCrawler.getData(self, '//*[@id="pdtMainData"]/article[2]/div[1]/div/div[2]/div[1]/span', 'xpath')
+            price_elem = JoongnaCrawler.getData(self, '//*[@id="pdtMainData"]/article[2]/div[1]/div/div[2]/p/em', 'xpath')
+            date_elem = JoongnaCrawler.getData(self, '//*[@id="pdtMainData"]/article[2]/div[1]/div/div[2]/div[2]/dl/dd[1]', 'xpath')
+            goodNum_elem = JoongnaCrawler.getData(self, '//*[@id="pdtMainData"]/article[2]/div[5]/ul/li[4]/span/p', 'xpath')
+            view_elem = JoongnaCrawler.getData(self, '//*[@id="pdtMainData"]/article[2]/div[1]/div/div[2]/div/dl/dd[2]', 'xpath')
+            text_elem = JoongnaCrawler.getData(self, 'description.mt20', 'class')
+            search_elem = JoongnaCrawler.getData(self, 'searchKw_list', 'class')
+            catg_elem = JoongnaCrawler.getData(self, 'category_list', 'class')
+            loc_elem = JoongnaCrawler.getData(self, '//*[@id="pdtMainData"]/article[3]/dl/dd[1]/ul/li/span', 'xpath')
             
             if any([JoongnaCrawler.notCheck(self, title_elem), JoongnaCrawler.notCheck(self, price_elem), 
                    JoongnaCrawler.notCheck(self, date_elem), JoongnaCrawler.notCheck(self, goodNum_elem),

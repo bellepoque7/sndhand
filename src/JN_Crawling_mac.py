@@ -24,5 +24,5 @@ joongna.Crawling(keyword = "item.goods", TimeSleep = 3)
 tmp = joongna.MakeDf()
 
 ## 여기서 if 문을 이용해서 os.path에 JN_CrawlingData.csv가 있으면 업데이트 하는 코드 작성
-joongna.SaveDf(tmp, "JN_CrawlingData_mac.csv", 'utf-8')
+joongna.saveDf(tmp, "JN_CrawlingData_mac.csv", 'utf-8')
 
