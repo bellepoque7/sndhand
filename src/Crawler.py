@@ -50,22 +50,29 @@ class Crawler():
         '''
         self.driver.find_element_by_xpath(xpath).click()
 
-    def getData(self, path, xpath = True):
+    def getData(self, path, key = 'xpath'):
         '''
         원하는 정보를 크롤링하는 함수
         path : 원하는 정보가 존재하는 웹페이지 class name 또는 xpath
         xpath : xpath로 검색할 경우 True, class name으로 검색할 경우 False
+        key : xpath, class, id 셋 중 하나의 형태로 검색하는 기능, default는 xpath
         '''
-        if xpath == True:
+        if key == 'xpath':
             try:
                 self.data = self.driver.find_element_by_xpath(path).text
             except:
                 self.data = ''
-        elif xpath == False:
+        elif key == 'class':
             try:
                 self.data = self.driver.find_element_by_class_name(path).text
             except:
                 self.data = ''
+        elif key == 'id':
+            try:
+                self.data = self.driver.find_element_by_id(path).text
+            except:
+                self.data = ''
+        
         return self.data
     
     def notCheck(self, data):
@@ -77,8 +84,10 @@ class Crawler():
     def calcTime(self, date):
         time = datetime.now()
         proc_time = int(re.findall('\d+', date)[0])
-
-        if "분" in date:
+    
+        if "초" in date:
+            tmp_time = time + timedelta(days = 0, hours = 0, minutes = 0, seconds = -proc_time)
+        elif "분" in date:
             tmp_time = time + timedelta(days = 0, hours = 0, minutes = -proc_time)
         elif "시간" in date:
             tmp_time = time + timedelta(days = 0, hours = -proc_time, minutes = 0)
