@@ -4,7 +4,7 @@
 # In[ ]:
 
 
-from CarrotCrawler import *
+from CR_Crawler import *
 
 carrot = CarrotCrawler()
 carrot.openDriver('./chromedriver.exe', 'https://www.daangn.com/')

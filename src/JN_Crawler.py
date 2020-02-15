@@ -69,16 +69,15 @@ class JoongnaCrawler(Crawler):
             
             if any([JoongnaCrawler.notCheck(self, title_elem), JoongnaCrawler.notCheck(self, price_elem), 
                    JoongnaCrawler.notCheck(self, date_elem), JoongnaCrawler.notCheck(self, goodNum_elem),
-                   JoongnaCrawler.notCheck(self, view_elem), JoongnaCrawler.notCheck(self, tag_elem),
-                   JoongnaCrawler.notCheck(self, text_elem), JoongnaCrawler.notCheck(self, search_elem),
-                   JoongnaCrawler.notCheck(self, catg_elem), JoongnaCrawler.notCheck(self, loc_elem)]) == True:
+                   JoongnaCrawler.notCheck(self, view_elem), JoongnaCrawler.notCheck(self, text_elem), 
+                    JoongnaCrawler.notCheck(self, search_elem), JoongnaCrawler.notCheck(self, catg_elem), 
+                    JoongnaCrawler.notCheck(self, loc_elem)]) == True:
                 
                 self.title.append(title_elem)
                 self.price.append(price_elem)
                 self.date.append(JoongnaCrawler.calcTime(self, date_elem))
                 self.goodNum.append(goodNum_elem)
                 self.view.append(view_elem)
-                self.tag.append(tag_elem)
                 self.text.append(text_elem)
                 self.search.append(search_elem)
                 self.catg.append(catg_elem)

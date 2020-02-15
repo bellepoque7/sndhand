@@ -1,10 +1,10 @@
 
 # coding: utf-8
 
-# In[ ]:
+# In[1]:
 
 
-from CarrotCrawler import *
+from CR_Crawler import *
 
 carrot = CarrotCrawler()
 carrot.openDriver('./chromedriver.exe', 'https://www.daangn.com/')
