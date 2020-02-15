@@ -86,17 +86,19 @@ class Crawler():
         proc_time = int(re.findall('\d+', date)[0])
     
         if "초" in date:
-            tmp_time = time + timedelta(days = 0, hours = 0, minutes = 0, seconds = -proc_time)
+            tmp_time = time + timedelta(seconds = -proc_time)
         elif "분" in date:
-            tmp_time = time + timedelta(days = 0, hours = 0, minutes = -proc_time)
+            tmp_time = time + timedelta(minutes = -proc_time)
         elif "시간" in date:
-            tmp_time = time + timedelta(days = 0, hours = -proc_time, minutes = 0)
+            tmp_time = time + timedelta(hours = -proc_time)
         elif "일" in date:
-            tmp_time = time + timedelta(days = -proc_time, hours = 0, minutes = 0)
+            tmp_time = time + timedelta(days = -proc_time)
+        elif "주" in date:
+            tmp_time = time + timedelta(days = -(proc_time * 7))
         elif "달" in date:
-            tmp_time = time + timedelta(days = -(proc_time * 30), hours = 0, minutes = 0)
+            tmp_time = time + timedelta(days = -(proc_time * 30))
         elif "년" in date:
-            tmp_time = time + timedelta(days = -(proc_time * 365), hours = 0, minutes = 0)
+            tmp_time = time + timedelta(days = -(proc_time * 365))
         else:
             tmp_time = np.NaN
 
