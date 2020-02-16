@@ -109,18 +109,27 @@ class BunjangCrawler(Crawler):
             text_elem = BunjangCrawler.getData(self, 'sc-dwztqd.FHjnZ', 'class')
             catg_elem = BunjangCrawler.getData(self, '//*[@id="root"]/div/div/div[4]/div[1]/div            /div[4]/div[1]/div[2]/div[1]/div[2]/div[3]/div[2]/div[2]/a/span', 'xpath')
             
-            self.title.append(title_elem)
-            self.price.append(price_elem)
-            self.goodNum.append(goodNum_elem)
-            self.view.append(view_elem)
-            self.date.append(BunjangCrawler.calcTime(self, date_elem))
-            self.loc.append(loc_elem)
-            self.text.append(text_elem)
-            self.catg.append(catg_elem)
+            if any([BunjangCrawler.notCheck(self, title_elem), BunjangCrawler.notCheck(self, price_elem), 
+                    BunjangCrawler.notCheck(self, date_elem), BunjangCrawler.notCheck(self, goodNum_elem),
+                    BunjangCrawler.notCheck(self, view_elem), BunjangCrawler.notCheck(self, text_elem), 
+                    BunjangCrawler.notCheck(self, catg_elem), BunjangCrawler.notCheck(self, loc_elem)]) == True:
 
-            time.sleep(TimeSleep)
-            self.driver.back()
-            time.sleep(TimeSleep)
+                self.title.append(title_elem)
+                self.price.append(price_elem)
+                self.goodNum.append(goodNum_elem)
+                self.view.append(view_elem)
+                self.date.append(BunjangCrawler.calcTime(self, date_elem))
+                self.loc.append(loc_elem)
+                self.text.append(text_elem)
+                self.catg.append(catg_elem)
+
+                time.sleep(TimeSleep)
+                self.driver.back()
+                time.sleep(TimeSleep)
+            
+            else:
+                self.driver.back()
+                continue
 
     def makeDf(self):
         '''

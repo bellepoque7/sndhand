@@ -94,7 +94,7 @@ class Crawler():
         elif "일" in date:
             tmp_time = time + timedelta(days = -proc_time)
         elif "주" in date:
-            tmp_time = time + timedelta(days = -(proc_time * 7))
+            tmp_time = time + timedelta(weeks = - proc_time)
         elif "달" in date:
             tmp_time = time + timedelta(days = -(proc_time * 30))
         elif "년" in date:
