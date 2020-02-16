@@ -7,7 +7,7 @@
 from JN_Crawler import *
 
 joongna = JoongnaCrawler()
-joongna.openDriver("/home/ubuntu/sndhand/src/chromedriver.exe", "https://m.joongna.com")
+joongna.openDriver("#!/home/ubuntu/sndhand/src/chromedriver.exe", "https://m.joongna.com")
 time.sleep(5)
 
 joongna.clickSearch()
