@@ -5,15 +5,12 @@
 <!-- 부모 템플릿 block부분에 들어갈 내용-->
 {% for post in post_list %}
     <div class="post">
-        <div class="date">
-            {{ post.published_date }}
-        </div>
-        <h1>
+        <h2>
             <!-- post_list를 바꾸면 역으로 모 템플릿도 변경하게 만들기 -->
             <a href="{% url 'post_detail' post.pk %}">
                 {{ post.title }}
             </a>
-        </h1>
+        </h2>
         <p>{{ post.text|linebreaksbr }}</p>
     </div>
 
