@@ -31,7 +31,14 @@ class Crawler():
         driverpath : 크롬 드라이버가 위치한 경로를 입력
         webpath : 크롤링하고자 하는 사이트의 url 주소 입력
         '''
-        self.driver = webdriver.Chrome(driverpath)
+        options = webdriver.ChromeOptions()
+        options.add_argument('headless')
+        options.add_argument('window-size=1920x1080')
+        options.add_argument("disable-gpu")
+        # headless가 탐지될 떄
+        #options.add_argument("user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36")
+
+        self.driver = webdriver.Chrome(driverpath, chrome_options=options)
         self.driver.get(webpath)
         
     def inputKeyword(self, xpath, keyword):
