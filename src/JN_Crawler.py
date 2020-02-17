@@ -57,7 +57,7 @@ class JoongnaCrawler(Crawler):
             self.driver.find_elements_by_class_name(keyword)[idx].click()
             time.sleep(TimeSleep)
             
-	    if idx % 10 == 0:
+            if idx % 10 == 0:
                 print(str(idx) + "  articles was crawled.")
 
             title_elem = JoongnaCrawler.getData(self, '//*[@id="pdtMainData"]/article[2]/div[1]/div/div[2]/div[1]/span', 'xpath')
