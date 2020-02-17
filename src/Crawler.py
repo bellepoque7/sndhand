@@ -39,7 +39,7 @@ class Crawler():
         # headless가 탐지될 떄
         #options.add_argument("user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36")
 
-        self.driver = webdriver.Chrome(driverpath, chrome_options=options)
+        self.driver = webdriver.Chrome(driverpath, chrome_options=options, executable_path = r'/home/ubuntu/sndhand/src/chromedriver')
         self.driver.get(webpath)
         
     def inputKeyword(self, xpath, keyword):

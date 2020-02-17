@@ -58,7 +58,7 @@ class JoongnaCrawler(Crawler):
             time.sleep(TimeSleep)
             
 	    if idx % 10 == 0:
-            	print(str(idx) + "  articles was crawled.")
+                print(str(idx) + "  articles was crawled.")
 
             title_elem = JoongnaCrawler.getData(self, '//*[@id="pdtMainData"]/article[2]/div[1]/div/div[2]/div[1]/span', 'xpath')
             price_elem = JoongnaCrawler.getData(self, '//*[@id="pdtMainData"]/article[2]/div[1]/div/div[2]/p/em', 'xpath')
