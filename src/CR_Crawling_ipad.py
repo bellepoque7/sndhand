@@ -7,7 +7,7 @@
 from CR_Crawler import *
 
 carrot = CarrotCrawler()
-carrot.openDriver('./chromedriver.exe', 'https://www.daangn.com/')
+carrot.openDriver('./chromedriver', 'https://www.daangn.com/')
 time.sleep(5)
 
 carrot.inputKeyword('//*[@id="header-search-input"]', '아이패드')
