@@ -7,7 +7,7 @@
 from BJ_Crawler import *
 
 bunjang = BunjangCrawler()
-bunjang.openDriver('./chromedriver.exe', "https://m.bunjang.co.kr/")
+bunjang.openDriver('./chromedriver', "https://m.bunjang.co.kr/")
 time.sleep(5)
 
 bunjang.inputID("id")
