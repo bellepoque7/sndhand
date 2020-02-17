@@ -10,6 +10,7 @@ import pandas as pd
 import numpy as np
 from datetime import datetime, timedelta
 import re
+from selenium.webdriver.chrome.options import Options
 
 class Crawler():
     
