@@ -5,6 +5,7 @@
 
 
 from Crawler import *
+from tqdm import tqdm
 
 class JoongnaCrawler(Crawler):
     def __init__(self):
@@ -52,14 +53,11 @@ class JoongnaCrawler(Crawler):
         self.driver.execute_script("window.scrollTo(0, -1 * document.body.scrollHeight);")
         time.sleep(TimeSleep)
         
-        for idx in range(len(self.driver.find_elements_by_class_name(keyword))):
+        for idx in tqdm(range(len(self.driver.find_elements_by_class_name(keyword)))):
         
             self.driver.find_elements_by_class_name(keyword)[idx].click()
             time.sleep(TimeSleep)
             
-            if idx % 10 == 0:
-                print(str(idx) + "  articles was crawled.")
-
             title_elem = JoongnaCrawler.getData(self, '//*[@id="pdtMainData"]/article[2]/div[1]/div/div[2]/div[1]/span', 'xpath')
             price_elem = JoongnaCrawler.getData(self, '//*[@id="pdtMainData"]/article[2]/div[1]/div/div[2]/p/em', 'xpath')
             date_elem = JoongnaCrawler.getData(self, '//*[@id="pdtMainData"]/article[2]/div[1]/div/div[2]/div[2]/dl/dd[1]', 'xpath')

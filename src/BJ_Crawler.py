@@ -6,6 +6,7 @@
 
 from Crawler import *
 import math
+from tqdm import tqdm
 
 class BunjangCrawler(Crawler):
 
@@ -33,15 +34,18 @@ class BunjangCrawler(Crawler):
         self.driver.find_element_by_css_selector        ("#root > div > div > div.sc-cmthru.eaEYjF > div > div.sc-bMVAic.gsDOLg > \
         div.sc-cQFLBn.gafiYp > form > div.sc-gojNiO.kuhVaC > input[type=text]")\
         .send_keys(ID)
+        print("아이디를 입력했습니다.")
 
     def inputPW(self, PW):
         self.driver.find_element_by_css_selector        ("#root > div > div > div.sc-cmthru.eaEYjF > div > div.sc-bMVAic.gsDOLg > \
         div.sc-cQFLBn.gafiYp > form > div.sc-daURTG.BBdVP > input[type=password]")\
         .send_keys(PW)
+        print("비밀번호를 입력했습니다.")
 
     def Login(self):
         self.driver.find_element_by_css_selector        ("#root > div > div > div.sc-cmthru.eaEYjF > div > div.sc-bMVAic.gsDOLg > \
         div.sc-cQFLBn.gafiYp > form > button").click()
+        print("로그인을 시도합니다.")
         
     def executeSearch(self):
         '''
@@ -51,6 +55,7 @@ class BunjangCrawler(Crawler):
         time.sleep(5)
 
         pageNum = math.ceil(BunjangCrawler.checkData(self)/100)
+        print("검색을 완료했습니다.")
         print("총 " + str(pageNum) + " 페이지가 크롤링 가능합니다.")
 
     def checkData(self):
@@ -89,16 +94,13 @@ class BunjangCrawler(Crawler):
         '''
 
     
-        for idx in range(len(self.driver.find_elements_by_class_name(keyword))):
+        for idx in tqdm(range(len(self.driver.find_elements_by_class_name(keyword)))):
                     
             self.driver.execute_script("window.scrollTo(0, -1 * document.body.scrollHeight);")
             time.sleep(TimeSleep)
             
             self.driver.find_elements_by_class_name(keyword)[idx].click()
             time.sleep(TimeSleep)
-
-            if idx % 10 == 0:
-                print(str(idx) + "  articles was crawled.")
 
             title_elem = BunjangCrawler.getData(self, 'sc-hizQCF.hHFlOW', 'class')
             price_elem = BunjangCrawler.getData(self, 'sc-ccLTTT.kwjbcp', 'class')

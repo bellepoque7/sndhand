@@ -5,6 +5,7 @@
 
 
 from Crawler import *
+from tqdm import tqdm
 
 class CarrotCrawler(Crawler):
     
@@ -44,12 +45,9 @@ class CarrotCrawler(Crawler):
         keyword : 개발자 도구에서 크롤링하고자 하는 게시물들의 class name
         TimeSleep : 스크롤 간의 휴식 시간(초)
         '''
-        for idx in range(len(self.driver.find_elements_by_class_name(keyword))):
+        for idx in tqdm(range(len(self.driver.find_elements_by_class_name(keyword)))):
             self.driver.find_elements_by_class_name(keyword)[idx].click()
             time.sleep(TimeSleep)
-
-            if idx % 10 == 0:
-                print(str(idx) + "  articles was crawled.")
 
             title_elem = CarrotCrawler.getData(self, 'article-title', 'id')
             price_elem = CarrotCrawler.getData(self, 'article-price', 'id')

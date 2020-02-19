@@ -38,6 +38,7 @@ class Crawler():
         self.driver = webdriver.Chrome(chrome_options=options, executable_path=r'/home/ubuntu/sndhand/src/chromedriver')
 
         self.driver.get(webpath)
+        print("웹 드라이버가 실행되었습니다.")
         
     def inputKeyword(self, xpath, keyword):
         '''
@@ -47,6 +48,7 @@ class Crawler():
         '''
         self.searchBox = self.driver.find_element_by_xpath(xpath)
         self.searchBox.send_keys(keyword)
+        print("검색어가 입력되었습니다.")
     
     def executeSearch(self, xpath):
         '''
@@ -54,6 +56,7 @@ class Crawler():
         xpath : 실행 버튼이 위치한 xpath
         '''
         self.driver.find_element_by_xpath(xpath).click()
+        print("검색을 실시합니다.")
 
     def getData(self, path, key = 'xpath'):
         '''
@@ -117,4 +120,5 @@ class Crawler():
         encode : 인코딩 타입 (ex) utf-8, cp949, etc...
         '''
         data.to_csv(fileName, encoding = encode)
+        print("데이터를 저장하였습니다.")
 
