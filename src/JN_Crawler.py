@@ -1,7 +1,7 @@
 
 # coding: utf-8
 
-# In[16]:
+# In[1]:
 
 
 from Crawler import *
@@ -14,18 +14,18 @@ class JoongnaCrawler(Crawler):
         크롤링에 필요한 변수들을 정의한다.
         안내 문구를 출력한다.
         '''
-        self.driver = None
-        self.searchBox = None
-        self.data = None
-        self.title = []
-        self.price = []
-        self.date = []
-        self.goodNum = []
-        self.view = []
-        self.text = []
-        self.search = []
-        self.catg = []
-        self.loc = []
+#         self.driver = None
+#         self.searchBox = None
+#         self.data = None
+#         self.title = []
+#         self.price = []
+#         self.goodNum = []
+#         self.view = []
+#         self.catg = []
+#         self.date = []
+#         self.text = []
+#         self.loc = []
+        super().__init__()
         print("중고나라 웹 크롤러입니다.")
     
     def clickSearch(self):
@@ -64,15 +64,14 @@ class JoongnaCrawler(Crawler):
             goodNum_elem = JoongnaCrawler.getData(self, '//*[@id="pdtMainData"]/article[2]/div[5]/ul/li[4]/span/p', 'xpath')
             view_elem = JoongnaCrawler.getData(self, '//*[@id="pdtMainData"]/article[2]/div[1]/div/div[2]/div/dl/dd[2]', 'xpath')
             text_elem = JoongnaCrawler.getData(self, 'description.mt20', 'class')
-            search_elem = JoongnaCrawler.getData(self, 'searchKw_list', 'class')
             catg_elem = JoongnaCrawler.getData(self, 'category_list', 'class')
             loc_elem = JoongnaCrawler.getData(self, '//*[@id="pdtMainData"]/article[3]/dl/dd[1]/ul/li/span', 'xpath')
-            
+            site_elem = '중고나라'
+
             if any([JoongnaCrawler.notCheck(self, title_elem), JoongnaCrawler.notCheck(self, price_elem), 
                    JoongnaCrawler.notCheck(self, date_elem), JoongnaCrawler.notCheck(self, goodNum_elem),
                    JoongnaCrawler.notCheck(self, view_elem), JoongnaCrawler.notCheck(self, text_elem), 
-                    JoongnaCrawler.notCheck(self, search_elem), JoongnaCrawler.notCheck(self, catg_elem), 
-                    JoongnaCrawler.notCheck(self, loc_elem)]) == True:
+                    JoongnaCrawler.notCheck(self, catg_elem), JoongnaCrawler.notCheck(self, loc_elem)]) == True:
                 
                 self.title.append(title_elem)
                 self.price.append(price_elem)
@@ -80,9 +79,9 @@ class JoongnaCrawler(Crawler):
                 self.goodNum.append(goodNum_elem)
                 self.view.append(view_elem)
                 self.text.append(text_elem)
-                self.search.append(search_elem)
                 self.catg.append(catg_elem)
                 self.loc.append(loc_elem)
+                self.site.append(site_elem)
 
                 self.driver.back()
                 time.sleep(TimeSleep)
@@ -91,13 +90,3 @@ class JoongnaCrawler(Crawler):
                 self.driver.back()
                 self.driver.forward()
                 continue
-                
-    def makeDf(self):
-        '''
-        크롤링한 데이터를 데이터프레임으로 만드는 함수
-        '''
-        df = pd.DataFrame(data = {'title' : self.title, 'price' : self.price, 'date' : self.date, 
-                                  'goodNum' : self.goodNum, 'view' : self.view, 'text' : self.text, 
-                                  'search' : self.search, 'catg' : self.catg, 'loc' : self.loc})
-        return df
-

@@ -18,13 +18,16 @@ class Crawler():
         self.driver = None
         self.searchBox = None
         self.data = None
+        self.time = None
         self.title = []
         self.price = []
+        self.goodNum = []
+        self.view = []
+        self.catg = []
         self.date = []
         self.text = []
-        self.catg = []
         self.loc = []
-        self.time = None
+        self.site = []
         
     def openDriver(self, driverpath, webpath):
         '''
@@ -111,7 +114,17 @@ class Crawler():
             tmp_time = np.NaN
 
         return tmp_time.strftime('%Y-%m-%d')
-    
+
+    def makeDf(self):
+        '''
+        크롤링한 데이터를 데이터프레임으로 만드는 함수
+        '''
+        df = pd.DataFrame(data = {'title' : self.title, 'price' : self.price, 'date' : self.date, 
+                                  'goodNum' : self.goodNum, 'view' : self.view, 'text' : self.text, 
+                                  'catg' : self.catg, 'loc' : self.loc, 'site' : self.site})
+        return df
+
+ 
     def saveDf(self, data, fileName, encode):
         '''
         데이터 프레임을 csv로 저장하는 함수
