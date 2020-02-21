@@ -37,6 +37,7 @@ class Crawler():
         '''
         options = Options()
         options.add_argument('--headless')
+	options.add_argument('--start-fullscreen')
         options.add_argument('--no-sandbox')
         self.driver = webdriver.Chrome(chrome_options=options, executable_path=r'/home/ubuntu/sndhand/src/chromedriver')
 
