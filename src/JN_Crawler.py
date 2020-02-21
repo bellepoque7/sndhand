@@ -14,17 +14,6 @@ class JoongnaCrawler(Crawler):
         크롤링에 필요한 변수들을 정의한다.
         안내 문구를 출력한다.
         '''
-#         self.driver = None
-#         self.searchBox = None
-#         self.data = None
-#         self.title = []
-#         self.price = []
-#         self.goodNum = []
-#         self.view = []
-#         self.catg = []
-#         self.date = []
-#         self.text = []
-#         self.loc = []
         super().__init__()
         print("중고나라 웹 크롤러입니다.")
     
@@ -50,11 +39,9 @@ class JoongnaCrawler(Crawler):
         keyword : 개발자 도구에서 크롤링하고자 하는 게시물들의 class name
         TimeSleep : 스크롤 간의 휴식 시간(초)
         '''
-        self.driver.execute_script("window.scrollTo(0, -1 * document.body.scrollHeight);")
-        time.sleep(TimeSleep)
-        
         for idx in tqdm(range(len(self.driver.find_elements_by_class_name(keyword)))):
-        
+            self.driver.execute_script("window.scrollTo(0, -1 * document.body.scrollHeight);")
+            time.sleep(TimeSleep)
             self.driver.find_elements_by_class_name(keyword)[idx].click()
             time.sleep(TimeSleep)
             
