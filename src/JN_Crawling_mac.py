@@ -7,7 +7,7 @@
 from JN_Crawler import *
 
 joongna = JoongnaCrawler()
-joongna.openDriver("./chromedriver", "https://m.joongna.com")
+joongna.openDriver("https://m.joongna.com")
 time.sleep(5)
 
 joongna.clickSearch()
@@ -17,7 +17,7 @@ joongna.inputKeyword('//*[@id="searchStr"]', "맥북")
 time.sleep(2)
 joongna.executeSearch('//*[@id="searchHeader"]/div/div[1]/div[1]/form/button')
 time.sleep(2)
-joongna.Scrolling(Num = 10, TimeSleep = 2)
+joongna.Scrolling(Num = 5, TimeSleep = 2)
 
 joongna.Crawling(keyword = "item.goods", TimeSleep = 3)
 

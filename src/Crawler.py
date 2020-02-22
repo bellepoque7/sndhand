@@ -29,10 +29,9 @@ class Crawler():
         self.loc = []
         self.site = []
         
-    def openDriver(self, driverpath, webpath):
+    def openDriver(self, webpath):
         '''
         크롬 드라이버를 실행하여 당근마켓 웹 홈페이지를 화면에 출력하는 함수
-        driverpath : 크롬 드라이버가 위치한 경로를 입력
         webpath : 크롤링하고자 하는 사이트의 url 주소 입력
         '''
         options = Options()

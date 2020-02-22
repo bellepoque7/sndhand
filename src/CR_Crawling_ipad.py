@@ -1,20 +1,20 @@
 
 # coding: utf-8
 
-# In[1]:
+# In[ ]:
 
 
 from CR_Crawler import *
 
 carrot = CarrotCrawler()
-carrot.openDriver('./chromedriver', 'https://www.daangn.com/')
+carrot.openDriver('https://www.daangn.com/')
 time.sleep(5)
 
 carrot.inputKeyword('//*[@id="header-search-input"]', '아이패드')
 time.sleep(2)
 carrot.executeSearch('//*[@id="header-search-button"]')
 time.sleep(2)
-carrot.Scrolling(Num = 10, TimeSleep = 3)
+carrot.Scrolling(Num = 5, TimeSleep = 3)
 
 carrot.Crawling(keyword = 'flea-market-article.flat-card', TimeSleep = 3)
 
