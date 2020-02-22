@@ -140,6 +140,10 @@ class Crawler():
         서로 다른 사이트에서 크롤링한 데이터를 병합하고, 그 데이터를 반환해주는 함수
         *data : 서로 합칠 데이터프레임, 갯수제한 없음. 단, 형태가 같아야 한다.
         '''
-        tmp = pd.concat([*data])
-        return tmp
+        df = pd.DataFrame(columns = ['title', 'price', 'date', 'goodNum', 'view', 'text', 'catg', 'loc', 'site'])
+        for path in data:
+            tmp = pd.read_csv(path, encoding = 'utf-8')
+            df = pd.concat([df, tmp])
+        
+        return df
 
