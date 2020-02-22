@@ -37,8 +37,8 @@ class Crawler():
         '''
         options = Options()
         options.add_argument('--headless')
-	options.add_argument('--start-fullscreen')
         options.add_argument('--no-sandbox')
+        options.add_argument("user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36")
         self.driver = webdriver.Chrome(chrome_options=options, executable_path=r'/home/ubuntu/sndhand/src/chromedriver')
 
         self.driver.get(webpath)
@@ -135,4 +135,12 @@ class Crawler():
         '''
         data.to_csv(fileName, encoding = encode)
         print("데이터를 저장하였습니다.")
+        
+    def mergeDf(self, *data):
+        '''
+        서로 다른 사이트에서 크롤링한 데이터를 병합하고, 그 데이터를 반환해주는 함수
+        *data : 서로 합칠 데이터프레임, 갯수제한 없음. 단, 형태가 같아야 한다.
+        '''
+        tmp = pd.concat([*data])
+        return tmp
 

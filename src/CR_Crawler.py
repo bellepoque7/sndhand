@@ -4,6 +4,12 @@
 # In[18]:
 
 
+
+# coding: utf-8
+
+# In[18]:
+
+
 from Crawler import *
 from tqdm import tqdm
 
@@ -15,18 +21,7 @@ class CarrotCrawler(Crawler):
         크롤링에 필요한 변수들을 정의한다.
         안내 문구를 출력한다.
         '''
-        self.driver = None
-        self.searchBox = None
-        self.data = None
-        self.title = []
-        self.price = []
-        self.loc = []
-        self.goodNum = []
-        self.view = []
-        self.catg = []
-        self.date = []
-        self.text = []
-        
+        super().__init__()
         print("당근마켓 웹 크롤러입니다.")
         
     def Scrolling(self, Num, TimeSleep):
@@ -56,28 +51,20 @@ class CarrotCrawler(Crawler):
             date_elem = CarrotCrawler.getData(self, '//*[@id="article-category"]/time', 'xpath')
             text_elem = CarrotCrawler.getData(self, 'article-detail', 'id')
             etc_elem = CarrotCrawler.getData(self, 'article-counts', 'id')
-
+            site_elem = '당근마켓'
+            
             self.title.append(title_elem)
             self.price.append(price_elem)
-            self.loc.append(loc_elem)
-            self.catg.append(catg_elem.split(' ∙ ')[0])
             self.date.append(CarrotCrawler.calcTime(self, date_elem))
             self.goodNum.append(etc_elem.split(' ∙ ')[1])
             self.view.append(etc_elem.split(' ∙ ')[2])
             self.text.append(text_elem)
-
+            self.catg.append(catg_elem.split(' ∙ ')[0])
+            self.loc.append(loc_elem)
+            self.site.append(site_elem)
+            
             time.sleep(TimeSleep)
             self.driver.back()
+            
             time.sleep(TimeSleep)
-        
-    def makeDf(self):
-        '''
-        크롤링한 데이터를 데이터프레임으로 만드는 함수
-        '''
-        df = pd.DataFrame(data = {'title' : self.title, 'price' : self.price, 'date' : self.date, 
-                                  'goodNum' : self.goodNum, 'view' : self.view, 'text' : self.text, 
-                                  'catg' : self.catg, 'loc' : self.loc})
-        df = pd.DataFrame(df, columns = ['title', 'price', 'date', 'goodNum', 'view', 'text', 'catg', 'loc'])
-        
-        return df
 

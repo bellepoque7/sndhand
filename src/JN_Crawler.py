@@ -1,13 +1,14 @@
 
 # coding: utf-8
 
-# In[1]:
+# In[ ]:
 
 
 from Crawler import *
 from tqdm import tqdm
 
 class JoongnaCrawler(Crawler):
+    
     def __init__(self):
         '''
         중고나라 웹 크롤러를 생성하면 실행되는 함수
@@ -40,11 +41,13 @@ class JoongnaCrawler(Crawler):
         TimeSleep : 스크롤 간의 휴식 시간(초)
         '''
         for idx in tqdm(range(len(self.driver.find_elements_by_class_name(keyword)))):
+            
             self.driver.execute_script("window.scrollTo(0, -1 * document.body.scrollHeight);")
             time.sleep(TimeSleep)
-            self.driver.find_elements_by_class_name(keyword)[idx].click()
+        
+            self.driver.find_elements_by_class_name('item.goods')[idx].click()
             time.sleep(TimeSleep)
-            
+
             title_elem = JoongnaCrawler.getData(self, '//*[@id="pdtMainData"]/article[2]/div[1]/div/div[2]/div[1]/span', 'xpath')
             price_elem = JoongnaCrawler.getData(self, '//*[@id="pdtMainData"]/article[2]/div[1]/div/div[2]/p/em', 'xpath')
             date_elem = JoongnaCrawler.getData(self, '//*[@id="pdtMainData"]/article[2]/div[1]/div/div[2]/div[2]/dl/dd[1]', 'xpath')
@@ -59,7 +62,7 @@ class JoongnaCrawler(Crawler):
                    JoongnaCrawler.notCheck(self, date_elem), JoongnaCrawler.notCheck(self, goodNum_elem),
                    JoongnaCrawler.notCheck(self, view_elem), JoongnaCrawler.notCheck(self, text_elem), 
                     JoongnaCrawler.notCheck(self, catg_elem), JoongnaCrawler.notCheck(self, loc_elem)]) == True:
-                
+
                 self.title.append(title_elem)
                 self.price.append(price_elem)
                 self.date.append(JoongnaCrawler.calcTime(self, date_elem))
@@ -72,8 +75,9 @@ class JoongnaCrawler(Crawler):
 
                 self.driver.back()
                 time.sleep(TimeSleep)
-                
+
             else:
                 self.driver.back()
                 self.driver.forward()
                 continue
+
