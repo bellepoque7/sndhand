@@ -17,7 +17,6 @@ time.sleep(2)
 bunjang.Login()
 time.sleep(2)
 
-
 bunjang.inputKeyword('//*[@id="root"]/div/div/div[3]/div[1]/div[1]/div[1]/div[1]/input', "삼성 노트북")
 time.sleep(2)
 bunjang.executeSearch()

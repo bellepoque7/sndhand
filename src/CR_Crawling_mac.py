@@ -14,7 +14,7 @@ carrot.inputKeyword('//*[@id="header-search-input"]', '맥북')
 time.sleep(2)
 carrot.executeSearch('//*[@id="header-search-button"]')
 time.sleep(2)
-carrot.Scrolling(Num = 5, TimeSleep = 3)
+carrot.Scrolling(Num = 7, TimeSleep = 3)
 
 carrot.Crawling(keyword = 'flea-market-article.flat-card', TimeSleep = 3)
 

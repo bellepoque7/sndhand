@@ -17,7 +17,7 @@ joongna.inputKeyword('//*[@id="searchStr"]', "맥북")
 time.sleep(2)
 joongna.executeSearch('//*[@id="searchHeader"]/div/div[1]/div[1]/form/button')
 time.sleep(2)
-joongna.Scrolling(Num = 5, TimeSleep = 2)
+joongna.Scrolling(Num = 7, TimeSleep = 2)
 
 joongna.Crawling(keyword = "item.goods", TimeSleep = 3)
 
