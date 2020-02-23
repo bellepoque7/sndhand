@@ -30,6 +30,6 @@ tmp = bunjang.makeDf()
 bunjang.saveDf(tmp, "BJ_CrawlingData_ipad.csv", 'utf-8')
 
 # 데이터 병합
-dat = bunjang.mergeDf("JN_CrawilngData_ipad.csv", "CR_CrawlingData_ipad.csv", "BJ_CrawlingData_ipad.csv")
+dat = bunjang.mergeDf("JN_CrawlingData_ipad.csv", "CR_CrawlingData_ipad.csv", "BJ_CrawlingData_ipad.csv")
 bunjang.saveDf(dat, "mergedData_ipad.csv", 'utf-8')
 
