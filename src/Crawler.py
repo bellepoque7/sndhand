@@ -94,7 +94,7 @@ class Crawler():
         
     def calcTime(self, date):
         time = datetime.now()
-        proc_time = int(re.findall('\d+', date))
+        proc_time = int(re.findall('\d+', date)[0])
     
         if "초" in date:
             tmp_time = time + timedelta(seconds = -proc_time)
