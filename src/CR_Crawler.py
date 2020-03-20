@@ -21,7 +21,8 @@ class CarrotCrawler(Crawler):
         크롤링에 필요한 변수들을 정의한다.
         안내 문구를 출력한다.
         '''
-        super().__init__()
+        super(Crawler, self).__init__()
+        super(Preprocessing, self).__init__()
         print("당근마켓 웹 크롤러입니다.")
         
     def Scrolling(self, Num, TimeSleep):
@@ -54,10 +55,10 @@ class CarrotCrawler(Crawler):
             site_elem = '당근마켓'
             
             self.title.append(title_elem)
-            self.price.append(price_elem)
+            self.price.append(CarrotCrawler.extractDigit(self, price_elem))
             self.date.append(CarrotCrawler.calcTime(self, date_elem))
-            self.goodNum.append(etc_elem.split(' ∙ ')[1])
-            self.view.append(etc_elem.split(' ∙ ')[2])
+            self.goodNum.append(CarrotCrawler.extractDigit(self, etc_elem.split(' ∙ ')[1]))
+            self.view.append(CarrotCrawler.extractDigit(self, etc_elem.split(' ∙ ')[2]))
             self.text.append(text_elem)
             self.catg.append(catg_elem.split(' ∙ ')[0])
             self.loc.append(loc_elem)

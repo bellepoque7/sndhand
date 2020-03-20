@@ -10,9 +10,9 @@ bunjang = BunjangCrawler()
 bunjang.openDriver("https://m.bunjang.co.kr/")
 time.sleep(5)
 
-bunjang.inputID("id")
+bunjang.inputID("01048103002")
 time.sleep(2)
-bunjang.inputPW("pw")
+bunjang.inputPW("kim5660085!")
 time.sleep(2)
 bunjang.Login()
 time.sleep(2)
@@ -25,6 +25,7 @@ time.sleep(5)
 bunjang.PageJump(1)
 
 tmp = bunjang.makeDf()
+tmp = tmp[bunjang.filterData(tmp, 'tablet')]
 
 ## 여기서 if 문을 이용해서 os.path에 JN_CrawlingData.csv가 있으면 업데이트 하는 코드 작성
 bunjang.saveDf(tmp, "BJ_CrawlingData_ipad.csv", 'utf-8')

@@ -1,13 +1,14 @@
 
 # coding: utf-8
 
-# In[6]:
+# In[1]:
 
 
 from Crawler import *
+from Preprocessing import *
 from tqdm import tqdm
 
-class JoongnaCrawler(Crawler):
+class JoongnaCrawler(Crawler, Preprocessing):
     
     def __init__(self):
         '''
@@ -15,7 +16,8 @@ class JoongnaCrawler(Crawler):
         크롤링에 필요한 변수들을 정의한다.
         안내 문구를 출력한다.
         '''
-        super().__init__()
+        super(Crawler, self).__init__()
+        super(Preprocessing, self).__init__()
         print("중고나라 웹 크롤러입니다.")
     
     def clickSearch(self):
@@ -64,10 +66,10 @@ class JoongnaCrawler(Crawler):
                     JoongnaCrawler.notCheck(self, catg_elem), JoongnaCrawler.notCheck(self, loc_elem)]) == True:
 
                 self.title.append(title_elem)
-                self.price.append(price_elem)
+                self.price.append(JoongnaCrawler.extractDigit(self, price_elem))
                 self.date.append(JoongnaCrawler.calcTime(self, date_elem))
-                self.goodNum.append(goodNum_elem)
-                self.view.append(view_elem)
+                self.goodNum.append(JoongnaCrawler.extractDigit(self, goodNum_elem))
+                self.view.append(JoongnaCrawler.extractDigit(self, view_elem))
                 self.text.append(text_elem)
                 self.catg.append(catg_elem)
                 self.loc.append(loc_elem)
@@ -76,10 +78,7 @@ class JoongnaCrawler(Crawler):
                 self.driver.back()
                 time.sleep(TimeSleep)
             
-            elif '삭제' in JoongnaCrawler.getData(self, '//*[@id="root"]/div[18]/div/div/div[2]/div/div[1]/p', 'xpath') or \
-            '이용제한' in JoongnaCrawler.getData(self, '//*[@id="root"]/div[18]/div/div/div[2]/div/div[1]/p', 'xpath') or \
-            '판매보류' in JoongnaCrawler.getData(self, '//*[@id="root"]/div[18]/div/div/div[2]/div/div[1]/p', 'xpath') or \
-            '사기' in JoongnaCrawler.getData(self, '//*[@id="root"]/div[18]/div/div/div[2]/div/div[1]/p', 'xpath'):
+            elif '삭제' in JoongnaCrawler.getData(self, '//*[@id="root"]/div[18]/div/div/div[2]/div/div[1]/p', 'xpath') or             '이용제한' in JoongnaCrawler.getData(self, '//*[@id="root"]/div[18]/div/div/div[2]/div/div[1]/p', 'xpath') or             '판매보류' in JoongnaCrawler.getData(self, '//*[@id="root"]/div[18]/div/div/div[2]/div/div[1]/p', 'xpath'):
                 self.driver.find_element_by_xpath('//*[@id="root"]/div[18]/div/div/div[2]/div/div[2]/button').click()
                 time.sleep(TimeSleep)
             

@@ -16,7 +16,8 @@ class BunjangCrawler(Crawler):
         크롤링에 필요한 변수들을 정의한다.
         안내 문구를 출력한다.
         '''
-        super().__init__()
+        super(Crawler, self).__init__()
+        super(Preprocessing, self).__init__()
         print("번개장터 웹 크롤러입니다.")
     
     def inputID(self, ID):
@@ -105,10 +106,10 @@ class BunjangCrawler(Crawler):
                     BunjangCrawler.notCheck(self, catg_elem), BunjangCrawler.notCheck(self, loc_elem)]) == True:
 
                 self.title.append(title_elem)
-                self.price.append(price_elem)
+                self.price.append(BunjangCrawler.extractDigit(self, price_elem))
                 self.date.append(BunjangCrawler.calcTime(self, date_elem))
-                self.goodNum.append(goodNum_elem)
-                self.view.append(view_elem)
+                self.goodNum.append(BunjangCrawler.extractDigit(self, goodNum_elem))
+                self.view.append(BunjangCrawler.extractDigit(self, view_elem))
                 self.text.append(text_elem)
                 self.catg.append(catg_elem)
                 self.loc.append(loc_elem)
