@@ -19,7 +19,7 @@ joongna.inputKeyword('//*[@id="searchStr"]', "아이패드")
 time.sleep(2)
 joongna.executeSearch('//*[@id="searchHeader"]/div/div[1]/div[1]/form/button')
 time.sleep(2)
-joongna.Scrolling(Num = 5, TimeSleep = 2)
+joongna.Scrolling(Num = 1, TimeSleep = 2)
 
 joongna.Crawling(keyword = "item.goods", TimeSleep = 3)
 
@@ -37,7 +37,7 @@ carrot.inputKeyword('//*[@id="header-search-input"]', '아이패드')
 time.sleep(2)
 carrot.executeSearch('//*[@id="header-search-button"]')
 time.sleep(2)
-carrot.Scrolling(Num = 5, TimeSleep = 3)
+carrot.Scrolling(Num = 1, TimeSleep = 3)
 
 carrot.Crawling(keyword = 'flea-market-article.flat-card', TimeSleep = 3)
 
