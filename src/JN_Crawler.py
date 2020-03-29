@@ -78,7 +78,10 @@ class JoongnaCrawler(Crawler, Preprocessing):
                 self.driver.back()
                 time.sleep(TimeSleep)
             
-            elif '삭제' in JoongnaCrawler.getData(self, '//*[@id="root"]/div[18]/div/div/div[2]/div/div[1]/p', 'xpath') or             '이용제한' in JoongnaCrawler.getData(self, '//*[@id="root"]/div[18]/div/div/div[2]/div/div[1]/p', 'xpath') or             '판매보류' in JoongnaCrawler.getData(self, '//*[@id="root"]/div[18]/div/div/div[2]/div/div[1]/p', 'xpath'):
+            elif '삭제' in JoongnaCrawler.getData(self, '//*[@id="root"]/div[18]/div/div/div[2]/div/div[1]/p', 'xpath') or \
+                '이용제한' in JoongnaCrawler.getData(self, '//*[@id="root"]/div[18]/div/div/div[2]/div/div[1]/p', 'xpath') or \
+                '판매보류' in JoongnaCrawler.getData(self, '//*[@id="root"]/div[18]/div/div/div[2]/div/div[1]/p', 'xpath') or \
+                '탈퇴' in JoongnaCrawler.getData(self, '//*[@id="root"]/div[18]/div/div/div[2]/div/div[1]/p', 'xpath'):
                 self.driver.find_element_by_xpath('//*[@id="root"]/div[18]/div/div/div[2]/div/div[2]/button').click()
                 time.sleep(TimeSleep)
             
