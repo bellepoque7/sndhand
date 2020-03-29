@@ -136,7 +136,7 @@ class Crawler():
         fileName : 저장하고자 하는 경로
         encode : 인코딩 타입 (ex) utf-8, cp949, etc...
         '''
-        data.to_csv(fileName, encoding = encode)
+        data.to_csv(fileName, encoding = encode, sep = ",")
         print("데이터를 저장하였습니다.")
         
     def mergeDf(self, *data):
