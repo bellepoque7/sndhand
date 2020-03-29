@@ -147,7 +147,7 @@ class Crawler():
         df = pd.DataFrame(columns = ['title', 'price', 'date', 'goodNum', 'view', 'text', 'catg', 'loc', 'site'])
         for path in data:
             tmp = pd.read_csv(path, encoding = 'utf-8')
-            df = pd.concat([df, tmp])
-        
+            df = pd.concat([df, tmp], ignore_index = True)
+        del df['Unnamed: 0']
         return df
 
