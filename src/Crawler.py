@@ -35,10 +35,10 @@ class Crawler():
         webpath : 크롤링하고자 하는 사이트의 url 주소 입력
         '''
         options = Options()
-        options.add_argument('--headless')
-        options.add_argument('--no-sandbox')
-        #options.add_argument("user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36")
-        self.driver = webdriver.Chrome(chrome_options=options, executable_path=r'/home/ubuntu/sndhand/src/chromedriver')
+#         options.add_argument('--headless')
+#         options.add_argument('--no-sandbox')
+        options.add_argument("user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36")
+        self.driver = webdriver.Chrome(chrome_options=options, executable_path='./chromedriver.exe')
 
         self.driver.get(webpath)
         print("웹 드라이버가 실행되었습니다.")
@@ -96,7 +96,9 @@ class Crawler():
         time = datetime.now()
         proc_time = int(re.findall('\d+', date)[0])
     
-        if "초" in date:
+        if "방금전" in date:
+            tmp_time = time
+        elif "초" in date:
             tmp_time = time + timedelta(seconds = -proc_time)
         elif "분" in date:
             tmp_time = time + timedelta(minutes = -proc_time)
