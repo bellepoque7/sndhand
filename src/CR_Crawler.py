@@ -11,6 +11,7 @@
 
 
 from Crawler import *
+from Preprocessing import *
 from tqdm import tqdm
 
 class CarrotCrawler(Crawler):
@@ -21,8 +22,8 @@ class CarrotCrawler(Crawler):
         크롤링에 필요한 변수들을 정의한다.
         안내 문구를 출력한다.
         '''
-        super(Crawler, self).__init__()
-        super(Preprocessing, self).__init__()
+        Crawler.__init__(self)
+        Preprocessing.__init__(self)
         print("당근마켓 웹 크롤러입니다.")
         
     def Scrolling(self, Num, TimeSleep):

@@ -5,6 +5,7 @@
 
 
 from Crawler import *
+from Preprocessing import *
 import math
 from tqdm import tqdm
 
@@ -16,8 +17,8 @@ class BunjangCrawler(Crawler):
         크롤링에 필요한 변수들을 정의한다.
         안내 문구를 출력한다.
         '''
-        super(Crawler, self).__init__()
-        super(Preprocessing, self).__init__()
+        Crawler.__init__(self)
+        Preprocessing.__init__(self)
         print("번개장터 웹 크롤러입니다.")
     
     def inputID(self, ID):
