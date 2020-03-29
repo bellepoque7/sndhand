@@ -23,4 +23,5 @@ tmp = tmp[carrot.filterData(tmp, 'notebook')]
 
 ## 여기서 if 문을 이용해서 os.path에 JN_CrawlingData.csv가 있으면 업데이트 하는 코드 작성
 carrot.saveDf(tmp, "CR_CrawlingData_samsung.csv", 'utf-8')
+carrot.driver.close()
 
