@@ -94,11 +94,13 @@ class Crawler():
         
     def calcTime(self, date):
         time = datetime.now()
-        proc_time = int(re.findall('\d+', date)[0])
-    
-        if "방금전" in date:
+        if "방금" in date:
             tmp_time = time
-        elif "초" in date:
+            return tmp_time.strftime('%Y-%m-%d')
+        else:
+            proc_time = int(re.findall('\d+', date)[0])
+    
+        if "초" in date:
             tmp_time = time + timedelta(seconds = -proc_time)
         elif "분" in date:
             tmp_time = time + timedelta(minutes = -proc_time)

@@ -14,7 +14,7 @@ from Crawler import *
 from Preprocessing import *
 from tqdm import tqdm
 
-class CarrotCrawler(Crawler):
+class CarrotCrawler(Crawler, Preprocessing):
     
     def __init__(self):
         '''

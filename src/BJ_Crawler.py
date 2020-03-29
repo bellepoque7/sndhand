@@ -9,7 +9,7 @@ from Preprocessing import *
 import math
 from tqdm import tqdm
 
-class BunjangCrawler(Crawler):
+class BunjangCrawler(Crawler, Preprocessing):
 
     def __init__(self):
         '''
