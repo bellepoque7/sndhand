@@ -14,7 +14,10 @@ class Preprocessing():
                    "notebook" : ["노트북/데스크탑", "디지털/가전", "노트북/넷북", "기타(노트북/넷북)"]}
         
     def extractDigit(self, data):
-        return re.findall("\d+", re.sub('[-=+,#/\?:^$.@*\"※~&%ㆍ!』\\‘|\(\)\[\]\<\>`\'…》]', '', data))[0];
+        if "없음" in data:
+            return 0;
+        else:
+            return re.findall("\d+", re.sub('[-=+,#/\?:^$.@*\"※~&%ㆍ!』\\‘|\(\)\[\]\<\>`\'…》]', '', data))[0];
     
     def filterData(self, data, txt):
         if txt.lower() == "notebook":
