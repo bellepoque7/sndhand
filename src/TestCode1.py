@@ -15,6 +15,7 @@ time.sleep(5)
 joongna.clickSearch()
 time.sleep(2)
 
+#코드 변경시 키워드 "아이패드"3번등장, 28번줄의 tablet도 변경
 joongna.inputKeyword('//*[@id="searchStr"]', "아이패드")
 time.sleep(2)
 joongna.executeSearch('//*[@id="searchHeader"]/div/div[1]/div[1]/form/button')
