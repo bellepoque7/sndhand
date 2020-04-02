@@ -24,7 +24,7 @@ class JoongnaCrawler(Crawler, Preprocessing):
         '''
         중고나라 웹 홈페이지에서 검색창으로 넘어가기 위해, 검색 버튼을 클릭하는 함수
         '''
-        self.driver.find_element_by_xpath('//*[@id="indexHeader"]/div/div[1]/div[2]/div[3]/button/div').click()
+        self.driver.find_element_by_xpath('//*[@id="root"]/div[1]/div[1]/header/div/button[2]').click()
 
     def Scrolling(self, Num, TimeSleep):
         '''
