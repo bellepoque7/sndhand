@@ -69,4 +69,5 @@ class CarrotCrawler(Crawler, Preprocessing):
             self.driver.back()
             
             time.sleep(TimeSleep)
+            break
 
