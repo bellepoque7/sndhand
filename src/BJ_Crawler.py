@@ -91,14 +91,14 @@ class BunjangCrawler(Crawler, Preprocessing):
             self.driver.find_elements_by_class_name(keyword)[idx].click()
             time.sleep(TimeSleep)
 
-            title_elem = BunjangCrawler.getData(self, '//*[@id="root"]/div/div/div[4]/div[1]/div/div[2]/div/div[2]/div/div[1]/div[1]/div[1]', 'xpath')
-            price_elem = BunjangCrawler.getData(self, '//*[@id="root"]/div/div/div[4]/div[1]/div/div[2]/div/div[2]/div/div[1]/div[1]/div[2]/div', 'xpath')
-            goodNum_elem = BunjangCrawler.getData(self, '//*[@id="root"]/div/div/div[4]/div[1]/div/div[2]/div/div[2]/div/div[1]/div[2]/div[1]/div/div[1]/div', 'xpath')
-            view_elem = BunjangCrawler.getData(self, '//*[@id="root"]/div/div/div[4]/div[1]/div/div[2]/div/div[2]/div/div[1]/div[2]/div[1]/div/div[2]', 'xpath')
-            date_elem = BunjangCrawler.getData(self, '//*[@id="root"]/div/div/div[4]/div[1]/div/div[2]/div/div[2]/div/div[1]/div[2]/div[1]/div/div[3]', 'xpath')
-            loc_elem = BunjangCrawler.getData(self, '//*[@id="root"]/div/div/div[4]/div[1]/div/div[2]/div/div[2]/div/div[1]/div[2]/div[2]/div[4]/div[2]/text()', 'xpath')
-            text_elem = BunjangCrawler.getData(self, '//*[@id="root"]/div/div/div[4]/div[1]/div/div[4]/div[1]/div[2]/div[1]/div[2]/div[2]', 'xpath')
-            catg_elem = BunjangCrawler.getData(self, '//*[@id="root"]/div/div/div[4]/div[1]/div/div[4]/div[1]/div[2]/div[1]/div[2]/div[3]/div[2]/div[2]/a/span', 'xpath')
+            title_elem = BunjangCrawler.getData(self, 'sc-hizQCF.hHFlOW', 'class')
+            price_elem = BunjangCrawler.getData(self, 'sc-ccLTTT.kwjbcp', 'class')
+            goodNum_elem = BunjangCrawler.getData(self, '//*[@id="root"]/div/div/div[4]/div[1]/div/            div[2]/div/div[2]/div/div[1]/div[2]/div[1]/div/div[1]/div', 'xpath')
+            view_elem = BunjangCrawler.getData(self, '//*[@id="root"]/div/div/div[4]/div[1]/div/            div[2]/div/div[2]/div/div[1]/div[2]/div[1]/div/div[2]', 'xpath')
+            date_elem = BunjangCrawler.getData(self, '//*[@id="root"]/div/div/div[4]/div[1]/div/            div[2]/div/div[2]/div/div[1]/div[2]/div[1]/div/div[3]', 'xpath')
+            loc_elem = BunjangCrawler.getData(self, 'sc-hAXbOi.tpptW', 'class')
+            text_elem = BunjangCrawler.getData(self, 'sc-dwztqd.FHjnZ', 'class')
+            catg_elem = BunjangCrawler.getData(self, '//*[@id="root"]/div/div/div[4]/div[1]/div/            div[4]/div[1]/div[2]/div[1]/div[2]/div[3]/div[2]/div[2]/a/span', 'xpath')
             site_elem = '번개장터'
             
             if any([BunjangCrawler.notCheck(self, title_elem), BunjangCrawler.notCheck(self, price_elem), 
