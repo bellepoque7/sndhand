@@ -50,8 +50,19 @@ tmp = tmp[carrot.filterData(tmp, 'tablet')]
 
 ## 여기서 if 문을 이용해서 os.path에 JN_CrawlingData.csv가 있으면 업데이트 하는 코드 작성
 
-carrot.saveDf(tmp, "CR_CrawlingData_ipad.csv", 'utf-8')
+#carrot.saveDf(tmp, "CR_CrawlingData_ipad.csv", 'utf-8')
 
+from sqlalchemy import create_engine
+import MySQLdb
+engine = create_engine("mysql+mysqldb://root:"+"1q2w3e" +"@localhost/sndhand",encoding='utf-8')
+conn = engine.connect()
+
+import pymysql
+pymysql.install_as_MySQLdb()
+import MySQLdb
+
+
+tmp.to_sql(name='ipad_', con = engine, if_exists= "append")
 
 
 

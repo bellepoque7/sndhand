@@ -47,6 +47,8 @@ class CarrotCrawler(Crawler, Preprocessing):
             time.sleep(TimeSleep)
 
             title_elem = CarrotCrawler.getData(self, 'article-title', 'id')
+            print(title_elem)
+
             price_elem = CarrotCrawler.getData(self, 'article-price', 'id')
             loc_elem = CarrotCrawler.getData(self, '//*[@id="region-name"]', 'xpath')
             catg_elem = CarrotCrawler.getData(self, 'article-category', 'id')
@@ -65,9 +67,10 @@ class CarrotCrawler(Crawler, Preprocessing):
             self.loc.append(loc_elem)
             self.site.append(site_elem)
             
+
             time.sleep(TimeSleep)
             self.driver.back()
             
             time.sleep(TimeSleep)
-            break
+#            break
 
