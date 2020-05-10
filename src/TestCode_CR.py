@@ -67,7 +67,9 @@ ipad_data.to_csv("./test1.csv", encoding = 'utf-8')
 # 한글로 아이패드 혹은 영어로 ipad가 없는 행을 index_lst에 추가
 index_lst = []
 for idx in range(len(ipad_data['preprocessing_text'])):
+    print(idx)
     print(ipad_data['preprocessing_text'][idx])
+    print("================================================================================================================")
     if "아이패드" in ipad_data['preprocessing_text'][idx]:
         pass
     elif "ipad" in ipad_data['preprocessing_text'][idx]:
