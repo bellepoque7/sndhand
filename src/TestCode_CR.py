@@ -48,9 +48,8 @@ carrot.Scrolling(Num = 1, TimeSleep = 3)
 carrot.Crawling(keyword = 'flea-market-article.flat-card', TimeSleep = 3)
 
 tmp = carrot.makeDf()
-tmp.to_csv("./test1.csv", encoding = 'utf-8')
 tmp = tmp[carrot.filterData(tmp, 'tablet')]
-tmp.to_csv("./test2.csv", encoding = 'utf-8')
+tmp = tmp.reset_index(drop = True)
 
 # 전처리
 ipad_data = tmp
