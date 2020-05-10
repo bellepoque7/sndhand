@@ -25,7 +25,21 @@ class CarrotCrawler(Crawler, Preprocessing):
         Crawler.__init__(self)
         Preprocessing.__init__(self)
         print("당근마켓 웹 크롤러입니다.")
-        
+
+    def extractDigit(self, data):
+        '''
+        당근마켓에서 무료나눔이라는 예외사항 발생. 해당 게시물은 xpath도 다르기 때문에 오류가 날 경우
+        무료나눔으로 처리하도록 함수 변경
+        '''
+
+        try:
+            if "없음" in data:
+                return 0;
+            else:
+                return re.findall("\d+", re.sub('[-=+,#/\?:^$.@*\"※~&%ㆍ!』\\‘|\(\)\[\]\<\>`\'…》]', '', data))[0];
+        except:
+            return "무료나눔"
+
     def Scrolling(self, Num, TimeSleep):
         '''
         당근마켓 웹 페이지를 아래로 스크롤하는 함수
@@ -46,10 +60,17 @@ class CarrotCrawler(Crawler, Preprocessing):
             self.driver.find_elements_by_class_name(keyword)[idx].click()
             time.sleep(TimeSleep)
 
-            title_elem = CarrotCrawler.getData(self, 'article-title', 'id')
-            print(title_elem)
+            '''
+            '숨겨둔 게시물'이라는 예외사항 발생. 해당 게시물을 처리하기 위해 사전 검증 코드 추가
+            '''
+            if CarrotCrawler.getData(self, '//*[@id="no-article"]', 'xpath'):
+                time.sleep(TimeSleep)
+                self.driver.back()
+                time.sleep(TimeSleep)
+                continue
 
-            price_elem = CarrotCrawler.getData(self, 'article-price', 'id')
+            title_elem = CarrotCrawler.getData(self, '//*[@id="article-title"]', 'xpath')
+            price_elem = CarrotCrawler.getData(self, '//*[@id="article-price"]', 'xpath')
             loc_elem = CarrotCrawler.getData(self, '//*[@id="region-name"]', 'xpath')
             catg_elem = CarrotCrawler.getData(self, 'article-category', 'id')
             date_elem = CarrotCrawler.getData(self, '//*[@id="article-category"]/time', 'xpath')
