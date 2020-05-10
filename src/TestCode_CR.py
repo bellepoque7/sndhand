@@ -63,14 +63,14 @@ ipad_data['preprocessing_text'] = ipad_data['title'] + ipad_data['text']
 # 한글로 아이패드 혹은 영어로 ipad가 없는 행을 index_lst에 추가
 
 index_lst = []
-for index in range(len(ipad_data['preprocessing_text'])):
-    if "아이패드" in ipad_data['preprocessing_text'][index]:
+for idx in range(len(ipad_data['preprocessing_text'])):
+    if "아이패드" in ipad_data['preprocessing_text'][idx]:
         pass
-    elif "ipad" in ipad_data['preprocessing_text'][index]:
+    elif "ipad" in ipad_data['preprocessing_text'][idx]:
         pass
     else:
-        index_lst.append(index)
-        print(ipad_data['preprocessing_text'][index])
+        index_lst.append(idx)
+        print(ipad_data['preprocessing_text'][idx])
         
 ## index_lst에 포함된 행 제거
 ipad_data = ipad_data.drop(index_lst).reset_index(drop=True)
