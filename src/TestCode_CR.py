@@ -54,7 +54,7 @@ tmp = tmp[carrot.filterData(tmp, 'tablet')]
 
 from sqlalchemy import create_engine
 import MySQLdb
-engine = create_engine("mysql+mysqldb://root:"+"1q2w3e" +"@localhost/sndhand",encoding='utf-8')
+engine = create_engine("mysql+mysqldb://root:"+"1q2w3e" +"@localhost/sndhand?charset=utf8mb4",encoding='utf-8')
 conn = engine.connect()
 
 import pymysql
@@ -62,7 +62,7 @@ pymysql.install_as_MySQLdb()
 import MySQLdb
 
 
-tmp.to_sql(name='ipad_', con = engine, if_exists= "append")
+tmp.to_sql(name='source_t', con = engine, if_exists= "append", index = False)
 
 
 
