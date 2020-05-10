@@ -48,8 +48,9 @@ carrot.Scrolling(Num = 1, TimeSleep = 3)
 carrot.Crawling(keyword = 'flea-market-article.flat-card', TimeSleep = 3)
 
 tmp = carrot.makeDf()
+tmp.to_csv("./test1.csv", encoding = 'utf-8')
 tmp = tmp[carrot.filterData(tmp, 'tablet')]
-
+tmp.to_csv("./test2.csv", encoding = 'utf-8')
 
 # 전처리
 ipad_data = tmp
@@ -62,7 +63,7 @@ ipad_data['preprocessing_text'] = ipad_data['title'] + ipad_data['text']
 
 
 ## 에러체크용
-ipad_data.to_csv("./test1.csv", encoding = 'utf-8')
+#ipad_data.to_csv("./test2.csv", encoding = 'utf-8')
 
 # 한글로 아이패드 혹은 영어로 ipad가 없는 행을 index_lst에 추가
 index_lst = []
