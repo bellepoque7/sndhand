@@ -143,29 +143,19 @@ ipad_data['wifi'] = ipad_data['wifi'].apply(lambda x : x[0])
 ipad_data['model'] = ipad_data['model'].apply(lambda x : x[0])
 ipad_data['generation'] = ipad_data['generation'].apply(lambda x : x[0])
 
-# 빈 데이터의 갯수를 알려주는 컬럼 추가
-ipad_data['isNullNum'] = 5-ipad_data.iloc[:, 15:20].sum(axis=1)
-
-# 2개 이상 비어있는 index 추출
-delidx = []
-for idx, dat in enumerate(ipad_data['isNullNum']):
-    if dat >= 2:
-        delidx.append(idx)
-        
-# 위의 조건을 만족하는 행 제거
-ipad_data = ipad_data.drop(delidx).reset_index(drop = True)
-
 # 표현방식 통일
 ipad_data['inch'] = ipad_data['inch'].apply(lambda x : re.findall("\d+\.?\d?", x)[0] if re.findall("\d+\.?\d?", x) else "없음")
-ipad_data['volume'] = ipad_data['volume'].apply(lambda x : x.replace("기가", "g")).apply(lambda y : y.replace("gb", "g"))
+ipad_data['volume'] = ipad_data['volume'].apply(lambda x : re.findall("\d+", x)[0] if re.findall("\d+", x) else "없음")
 ipad_data['wifi'] = ipad_data['wifi'].apply(lambda x : x.replace("와이파이", "wifi")).apply(lambda y : y.replace("셀룰러", "celluar"))
 ipad_data['model'] = ipad_data['model'].apply(lambda x : x.replace("프로", "pro")).apply(lambda y : y.replace("미니", "mini")).\
 apply(lambda z : z.replace("에어", "air"))
 ipad_data['generation'] = ipad_data['generation'].apply(lambda x : re.findall("\d", x)[0] if re.findall("\d", x) else "없음")
 
 # 필요한 컬럼만 추출
-ipad_data = ipad_data.loc[:, ['catg', 'date', 'goodNum', 'view', 'price', 'site', 'title', 'inch', 'volume', 'wifi', 'model' ,'generation', 'isNullNum']]
+ipad_data = ipad_data.loc[:, ['catg', 'date', 'goodNum', 'view', 'price', 'site', 'title', 'inch', 'volume', 'wifi', 'model' ,'generation','text']]
 
+# 없음을 np.NaN으로 변경
+ipad_data = ipad_data.replace("없음", np.NaN)
 
 ## 여기서 if 문을 이용해서 os.path에 JN_CrawlingData.csv가 있으면 업데이트 하는 코드 작성
 
