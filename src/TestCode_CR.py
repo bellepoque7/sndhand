@@ -152,7 +152,7 @@ apply(lambda z : z.replace("에어", "air"))
 ipad_data['generation'] = ipad_data['generation'].apply(lambda x : re.findall("\d", x)[0] if re.findall("\d", x) else "없음")
 
 # 필요한 컬럼만 추출
-ipad_data = ipad_data.loc[:, ['catg', 'date', 'goodNum', 'view', 'price', 'site', 'title', 'inch', 'volume', 'wifi', 'model' ,'generation']]
+ipad_data = ipad_data.loc[:, ['catg', 'date', 'goodNum', 'view', 'price', 'site', 'title', 'inch', 'volume', 'wifi', 'model' ,'generation','text']]
 
 # 없음을 np.NaN으로 변경
 ipad_data = ipad_data.replace("없음", np.NaN)
