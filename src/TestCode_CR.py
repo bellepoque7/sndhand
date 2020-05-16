@@ -43,7 +43,7 @@ carrot.inputKeyword('//*[@id="header-search-input"]', '아이패드')
 time.sleep(2)
 carrot.executeSearch('//*[@id="header-search-button"]')
 time.sleep(2)
-carrot.Scrolling(Num = 1, TimeSleep = 3)
+carrot.Scrolling(Num = 10, TimeSleep = 3)
 
 carrot.Crawling(keyword = 'flea-market-article.flat-card', TimeSleep = 3)
 
@@ -67,8 +67,8 @@ ipad_data['preprocessing_text'] = ipad_data['title'] + ipad_data['text']
 # 한글로 아이패드 혹은 영어로 ipad가 없는 행을 index_lst에 추가
 index_lst = []
 for idx in range(len(ipad_data['preprocessing_text'])):
-    print(idx)
-    print(ipad_data['preprocessing_text'][idx])
+#    print(idx)
+#    print(ipad_data['preprocessing_text'][idx])
     print("================================================================================================================")
     if "아이패드" in ipad_data['preprocessing_text'][idx]:
         pass
@@ -181,7 +181,7 @@ pymysql.install_as_MySQLdb()
 import MySQLdb
 
 
-ipad_data.to_sql(name='source_t', con = engine, if_exists= "append", index = False)
+ipad_data.to_sql(name='source_t', con = engine, if_exists= "append", index = True)
 
 
 
