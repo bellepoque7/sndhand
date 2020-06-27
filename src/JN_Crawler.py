@@ -20,11 +20,12 @@ class JoongnaCrawler(Crawler, Preprocessing):
         Preprocessing.__init__(self)
         print("중고나라 웹 크롤러입니다.")
     
-    def clickSearch(self):
+    def clickSearch(self, keyword):
         '''
         중고나라 웹 홈페이지에서 검색창으로 넘어가기 위해, 검색 버튼을 클릭하는 함수
+        keyword : 검색 버튼의 xpath 
         '''
-        self.driver.find_element_by_xpath('//*[@id="root"]/div[1]/div[1]/header/div/button[2]').click()
+        self.driver.find_element_by_xpath(keyword).click()
 
     def Scrolling(self, Num, TimeSleep):
         '''
@@ -32,62 +33,16 @@ class JoongnaCrawler(Crawler, Preprocessing):
         Num : 스크롤 횟수
         TimeSleep : 스크롤 간의 휴식 시간(초)
         '''
-        for n in range(Num):
+        for i in range(Num):
             self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
             time.sleep(TimeSleep)
 
-    def Crawling(self, keyword, TimeSleep):
+    def getData(self, page_source, tag, class_name):
         '''
-        게시물을 하나하나 클릭하여 내부를 크롤링하고, 이를 해당 변수에 저장한 뒤 이전 페이지로 돌아가는 함수
-        keyword : 개발자 도구에서 크롤링하고자 하는 게시물들의 class name
-        TimeSleep : 스크롤 간의 휴식 시간(초)
+        중고나라의 html 문서에서 원하는 데이터를 가져오는 함수
         '''
-        for idx in tqdm(range(len(self.driver.find_elements_by_class_name(keyword)))):
-            
-            self.driver.execute_script("window.scrollTo(0, -1 * document.body.scrollHeight);")
-            time.sleep(TimeSleep)
-        
-            self.driver.find_elements_by_class_name('item.goods')[idx].click()
-            time.sleep(TimeSleep)
-
-            title_elem = JoongnaCrawler.getData(self, '//*[@id="pdtMainData"]/article[2]/div[1]/div/div[2]/div[1]/span', 'xpath')
-            price_elem = JoongnaCrawler.getData(self, '//*[@id="pdtMainData"]/article[2]/div[1]/div/div[2]/p/em', 'xpath')
-            date_elem = JoongnaCrawler.getData(self, '//*[@id="pdtMainData"]/article[2]/div[1]/div/div[2]/div[2]/dl/dd[1]', 'xpath')
-            goodNum_elem = JoongnaCrawler.getData(self, '//*[@id="pdtMainData"]/article[2]/div[5]/ul/li[4]/span/p', 'xpath')
-            view_elem = JoongnaCrawler.getData(self, '//*[@id="pdtMainData"]/article[2]/div[1]/div/div[2]/div/dl/dd[2]', 'xpath')
-            text_elem = JoongnaCrawler.getData(self, 'description.mt20', 'class')
-            catg_elem = JoongnaCrawler.getData(self, 'category_list', 'class')
-            loc_elem = JoongnaCrawler.getData(self, '//*[@id="pdtMainData"]/article[3]/dl/dd[1]/ul/li/span', 'xpath')
-            site_elem = '중고나라'
-
-            if any([JoongnaCrawler.notCheck(self, title_elem), JoongnaCrawler.notCheck(self, price_elem), 
-                   JoongnaCrawler.notCheck(self, date_elem), JoongnaCrawler.notCheck(self, goodNum_elem),
-                   JoongnaCrawler.notCheck(self, view_elem), JoongnaCrawler.notCheck(self, text_elem), 
-                    JoongnaCrawler.notCheck(self, catg_elem), JoongnaCrawler.notCheck(self, loc_elem)]) == True:
-
-                self.title.append(title_elem)
-                self.price.append(JoongnaCrawler.extractDigit(self, price_elem))
-                self.date.append(JoongnaCrawler.calcTime(self, date_elem))
-                self.goodNum.append(JoongnaCrawler.extractDigit(self, goodNum_elem))
-                self.view.append(JoongnaCrawler.extractDigit(self, view_elem))
-                self.text.append(text_elem)
-                self.catg.append(catg_elem)
-                self.loc.append(loc_elem)
-                self.site.append(site_elem)
-
-                self.driver.back()
-                time.sleep(TimeSleep)
-            
-            elif '삭제' in JoongnaCrawler.getData(self, '//*[@id="root"]/div[18]/div/div/div[2]/div/div[1]/p', 'xpath') or \
-                '이용제한' in JoongnaCrawler.getData(self, '//*[@id="root"]/div[18]/div/div/div[2]/div/div[1]/p', 'xpath') or \
-                '판매보류' in JoongnaCrawler.getData(self, '//*[@id="root"]/div[18]/div/div/div[2]/div/div[1]/p', 'xpath') or \
-                '탈퇴' in JoongnaCrawler.getData(self, '//*[@id="root"]/div[18]/div/div/div[2]/div/div[1]/p', 'xpath') or \
-                '고객센터' in JoongnaCrawler.getData(self, '//*[@id="root"]/div[18]/div/div/div[2]/div/div[1]/p', 'xpath'):
-                self.driver.find_element_by_xpath('//*[@id="root"]/div[18]/div/div/div[2]/div/div[2]/button').click()
-                time.sleep(TimeSleep)
-            
-            else:
-                self.driver.back()
-                self.driver.forward()
-                continue
-
+        data = []
+        tmp = page_source.find_all(tag, {"class" : class_name})
+        for dat in tmp:
+            data.append(dat.text)
+        return data
