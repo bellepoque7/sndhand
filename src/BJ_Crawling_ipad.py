@@ -70,6 +70,6 @@ data = data[['title', 'price', 'loc', 'time', 'site', 'link']]
 
 #### 데이터 저장
 bunjang.saveDf(data, './bunjang_ipad.csv', 'utf-8')
-
+bunjang.driver.close()
 
 ## 여기서 if 문을 이용해서 os.path에 JN_CrawlingData.csv가 있으면 업데이트 하는 코드 작성
