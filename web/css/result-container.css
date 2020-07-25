@@ -1,0 +1,21 @@
+.result-container {
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+}
+
+.result-container__graph {
+    flex-grow : 1;
+    border:solid 1px gray;
+    margin:15px;
+    padding:10px;
+}
+
+.result-container__table {
+    flex-grow : 1.5;
+    border:solid 1px gray;
+    margin:15px;
+    padding:10px;
+}
+
+

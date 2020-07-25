@@ -1,0 +1,59 @@
+@import "reset.css";
+@import "header.css";
+@import "container.css";
+@import "result-container.css";
+
+
+
+* {
+    box-sizing : border-box;
+}
+
+body {
+    background-color:beige;
+    margin:0;
+}
+
+#index-page-body {
+    background-image : url('../second-hand-background.jpeg');
+}
+
+html {
+  height : 100%;
+  display : block;
+}
+
+a {
+  text-decoration : inherit;
+  color : inherit;
+}
+
+table {
+  margin: 0 auto;
+  text-align: center;
+  border-collapse: collapse;
+  /* border: 1px solid #d4d4d4; */
+}
+ 
+ /* tr:nth-child(even) {
+  background: #d4d4d4;
+} */
+
+
+th, td {
+  color : #4a4a4a;
+  padding: 10px 30px;
+  border-top : 1px solid #bababa;
+  border-bottom : 1px solid #bababa;
+}
+ 
+th {
+  font-weight : 600;
+  font-size : 90%;
+  background-color : #e0e0e0;
+  padding : 10px;
+}
+
+td {
+  font-size : 90%;
+}

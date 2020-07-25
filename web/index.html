@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=dege" />
+        <link rel="stylesheet"
+              href="https://use.fontawesome.com/releases/v5.13.0/css/all.css"
+              integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V" 
+              crossorigin="anonymous">
+        <link href="css/style.css" rel="stylesheet" />
+        <title>중고시세 알리미</title>
+    </head>
+    <body id="index-page-body">
+        <!--검색 박스 부분-->
+        <section class="container">
+            <main class="main-box">
+                <div class="main-box__row1">
+                    <a href="index.html" class="main-box__category main-box__category1">아이패드</a>
+                    <p class="div_character"> | </p>
+                    <a href="index.html" class="main-box__category main-box__category2">아이패드 미니</a>
+                    <p class="div_character"> | </p>
+                    <a href="index.html" class="main-box__category main-box__category3">아이패드 에어</a>
+                    <p class="div_character"> | </p>
+                    <a href="index.html" class="main-box__category main-box__category4">아이패드 프로</a>
+                </div>
+                <div class="main-box__row2">
+                    <select data-trigger="" name="" class="filter filter__size">
+                        <option placeholder="" value="">Size</option>
+                        <option>10.5"</option>
+                        <option>12.9"</option>
+                        <option>13"</option>
+                    </select>
+                    <select data-trigger="" name="" class="filter filter__color">
+                        <option placeholder="" value="">Color</option>
+                        <option>Space Gray</option>
+                        <option>White</option>
+                        <option>Rose Pink</option>
+                    </select>
+                    <select data-trigger="" name="" class="filter filter__release-year">
+                        <option placeholder="" value="">HDD</option>
+                        <option>64GB</option>
+                        <option>128GB</option>
+                        <option>256GB</option>
+                        <option>512GB</option>
+                        <option>1TB</option>
+                    </select>
+                        <!-- 수정 필요 사항 : <a>태그를 <button> 태그 바깥으로 빼고, 버튼 태그의 커서 속성을 바꾸어야 함.-->
+                    <button class="search-button">
+                        <a href="result.html">
+                            SEARCH
+                        </a>
+                    </button>
+                    <div class="main-box__search-filter1"></div>
+                    <div class="main-box__search-filter2"></div>
+                </div>
+            </main>
+        </section>
+        <script src="index.js"></script>
+    </body>
+</html>
+
+
+
